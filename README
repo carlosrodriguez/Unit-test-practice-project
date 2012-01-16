@@ -4,5 +4,6 @@ Instructions:
 
 1. For the project into your own account.
 2. Clone the project into your local repository from your own fork.
-3. Convert old-functions.js to testable code. Use jquery for this.
+3. Convert old-functions.js to testable code. Call your new file script.js
 4. Create your test js and html files.
+5. Write your new code using jQuery.
