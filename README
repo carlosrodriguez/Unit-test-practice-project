@@ -1,9 +1,19 @@
 Unit Test practice project.
 
-Instructions:
+Current situation:
+The unit-test.html showcases a list of products with checkboxes used to select products to compare. The page is supposed to only allow four items to be selected.
 
-1. For the project into your own account.
+The problem:
+The current script used from old-script.js although working has the following issues:
+1. The code is hard to test as it does multiple things.
+2. Even though you get a warning stating you can't select more then four products when trying to add a fifth one, you can still select more than four products.
+
+What you need to do:
+1. Use jquery and create unobstrusive, testable code.
+2. Write tests for your code.
+
+Instructions:
+1. Fork the project into your own account.
 2. Clone the project into your local repository from your own fork.
-3. Convert old-functions.js to testable code. Call your new file script.js
-4. Create your test js and html files.
-5. Write your new code using jQuery.
+3. Create a new file "script.js" for your new code.
+4. Create your test js and html files inside the test folder.
