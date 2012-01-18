@@ -1,7 +1,8 @@
 Unit Test practice project.
 
 Current situation:
-The unit-test.html showcases a list of products with checkboxes used to select products to compare. The page is supposed to only allow four items to be selected.
+The unit-test.html showcases a list of products with checkboxes used to select products to compare. The page is supposed to only allow four items to be selected, indicate that you need at least two items to compare when there are 
+less than two and store the values of the selected checkboxes, separated by commas ",",  on a hidden field for later processing.
 
 The problem:
 The current script used from old-script.js although working has the following issues:
