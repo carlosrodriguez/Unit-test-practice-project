@@ -1,30 +1,29 @@
-compare = ->
-  if not checkcompare() then alert "You need to select at least two products"
-  else setvalues()
+window.docompare = {}
+docompare.compare = ->
+  if not docompare.checkcompare() then alert "You need to select at least two products"
+  else docompare.setvalues()
 
-setvalues = ->
-  removevalue()
-  $(".compare-check:checked").each (i, element) => storevalue($(element).attr('id'))
+docompare.setvalues = ->
+  docompare.removevalue()
+  $(".compare-check:checked").each (i, element) => docompare.storevalue($(element).attr('id'))
 
-getcount = (item) ->
+docompare.getcount = (item) ->
   if typeof item == "object" then item.length else $(item).length
 
-setcomparebutton = ->
+docompare.setcomparebutton = ->
   $button = $(".compare-button")
-  if getcount($(".compare-check:checked")) <= 1
-    $button.attr('disabled', true)
-    $button.off('click', compare).addClass('compare-button-disabled')
+  if docompare.getcount($(".compare-check:checked")) <= 1
+    $button.attr('disabled', true).off('click').addClass('compare-button-disabled')
   else
-    $button.attr('disabled', false)
-    $button.on('click', compare).removeClass('compare-button-disabled')
+    $button.attr('disabled', false).on('click').removeClass('compare-button-disabled')
 
-checkcompare = ->
-  if getcount($(".compare-check:checked")) >= 2 then true else false
+docompare.checkcompare = ->
+  if docompare.getcount($(".compare-check:checked")) >= 2 then true else false
 
-setstorage = ->
-  if not $("#hdItemIDs").length then setinput() else $("#hdItemIDs")
+docompare.setstorage = ->
+  if not $("#hdItemIDs").length then docompare.setinput() else $("#hdItemIDs")
 
-setinput = ->
+docompare.setinput = ->
   if $("#hdItemIDs").length <= 0
     $input = $("<input>")
     $input.attr(
@@ -37,27 +36,28 @@ setinput = ->
   else
     $("#hdItemIDs")
 
-storevalue = (id) ->
-  $input = setinput()
+docompare.storevalue = (id) ->
+  $input = docompare.setinput()
   c = $input.val()
   content = 
     if c == "" then id else $input.val() + "," + id
   $input.val(content)
   content
 
-removevalue = ->
+docompare.removevalue = ($item) ->
   $("#hdItemIDs").val('')
-
-alertitems = ($item) ->
-  alert 'Max items'
-  $item.attr("checked", false)
+  if typeof $item == "object" then $item.attr("checked", false)
 
 $(".compare-check").live 'click', (event) ->
-  if $(this).attr("checked") && getcount() > 4 then alertitems($(this)) else setvalues()
-  setcomparebutton()
+  if $(this).attr("checked") && getcount() > 4
+    alert("Max items");
+    $(this).attr("checked", false)
+  else 
+    setvalues()
+  docompare.setcomparebutton()
 
 $(".compare-button").live 'click', (event) ->
-  compare()
+  docompare.compare()
 
-setcomparebutton()
-setstorage()
+docompare.setcomparebutton()
+docompare.setstorage()

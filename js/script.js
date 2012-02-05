@@ -1,23 +1,24 @@
+(function() {
 
-  var alertitems, checkcompare, compare, getcount, removevalue, setcomparebutton, setinput, setstorage, setvalues, storevalue;
+  window.docompare = {};
 
-  compare = function() {
-    if (!checkcompare()) {
+  docompare.compare = function() {
+    if (!docompare.checkcompare()) {
       return alert("You need to select at least two products");
     } else {
-      return setvalues();
+      return docompare.setvalues();
     }
   };
 
-  setvalues = function() {
+  docompare.setvalues = function() {
     var _this = this;
-    removevalue();
+    docompare.removevalue();
     return $(".compare-check:checked").each(function(i, element) {
-      return storevalue($(element).attr('id'));
+      return docompare.storevalue($(element).attr('id'));
     });
   };
 
-  getcount = function(item) {
+  docompare.getcount = function(item) {
     if (typeof item === "object") {
       return item.length;
     } else {
@@ -25,35 +26,33 @@
     }
   };
 
-  setcomparebutton = function() {
+  docompare.setcomparebutton = function() {
     var $button;
     $button = $(".compare-button");
-    if (getcount($(".compare-check:checked")) <= 1) {
-      $button.attr('disabled', true);
-      return $button.off('click', compare).addClass('compare-button-disabled');
+    if (docompare.getcount($(".compare-check:checked")) <= 1) {
+      return $button.attr('disabled', true).off('click').addClass('compare-button-disabled');
     } else {
-      $button.attr('disabled', false);
-      return $button.on('click', compare).removeClass('compare-button-disabled');
+      return $button.attr('disabled', false).on('click').removeClass('compare-button-disabled');
     }
   };
 
-  checkcompare = function() {
-    if (getcount($(".compare-check:checked")) >= 2) {
+  docompare.checkcompare = function() {
+    if (docompare.getcount($(".compare-check:checked")) >= 2) {
       return true;
     } else {
       return false;
     }
   };
 
-  setstorage = function() {
+  docompare.setstorage = function() {
     if (!$("#hdItemIDs").length) {
-      return setinput();
+      return docompare.setinput();
     } else {
       return $("#hdItemIDs");
     }
   };
 
-  setinput = function() {
+  docompare.setinput = function() {
     var $input;
     if ($("#hdItemIDs").length <= 0) {
       $input = $("<input>");
@@ -69,39 +68,36 @@
     }
   };
 
-  storevalue = function(id) {
+  docompare.storevalue = function(id) {
     var $input, c, content;
-    $input = setinput();
+    $input = docompare.setinput();
     c = $input.val();
     content = c === "" ? id : $input.val() + "," + id;
     $input.val(content);
     return content;
   };
 
-  removevalue = function() {
-    return $("#hdItemIDs").val('');
-  };
-
-  alertitems = function($item) {
-    alert('Max items');
-    return $item.attr("checked", false);
+  docompare.removevalue = function($item) {
+    $("#hdItemIDs").val('');
+    if (typeof $item === "object") return $item.attr("checked", false);
   };
 
   $(".compare-check").live('click', function(event) {
     if ($(this).attr("checked") && getcount() > 4) {
-      alertitems($(this));
+      alert("Max items");
+      $(this).attr("checked", false);
     } else {
       setvalues();
     }
-    return setcomparebutton();
+    return docompare.setcomparebutton();
   });
 
   $(".compare-button").live('click', function(event) {
-    return compare();
+    return docompare.compare();
   });
 
-  setcomparebutton();
+  docompare.setcomparebutton();
 
-  setstorage();
+  docompare.setstorage();
 
-
+}).call(this);
