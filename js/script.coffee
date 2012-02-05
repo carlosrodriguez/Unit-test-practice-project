@@ -21,26 +21,29 @@ setcomparebutton = ->
 checkcompare = ->
   if getcount($(".compare-check:checked")) >= 2 then true else false
 
-addinput = ->
-  m = setinput()
-  $('body').append(m)
-
 setstorage = ->
-  if not $("#hdItemIDs").length then addinput() else $("#hdItemIDs")
+  if not $("#hdItemIDs").length then setinput() else $("#hdItemIDs")
 
 setinput = ->
-  $input = $("<input>")
-  $input.attr(
-    name: "hdItemIDs"
-    id: "hdItemIDs"
-    type: "hidden"
-  )
+  if $("#hdItemIDs").length <= 0
+    $input = $("<input>")
+    $input.attr(
+      name: "hdItemIDs"
+      id: "hdItemIDs"
+      type: "hidden"
+    )
+    $('body').append($input)
+    $input
+  else
+    $("#hdItemIDs")
 
 storevalue = (id) ->
-  $input = $("#hdItemIDs")
+  $input = setinput()
   c = $input.val()
-  content = if c == "" then id else $input.val() + "," + id
+  content = 
+    if c == "" then id else $input.val() + "," + id
   $input.val(content)
+  content
 
 removevalue = ->
   $("#hdItemIDs").val('')

@@ -1,5 +1,5 @@
-(function() {
-  var addinput, alertitems, checkcompare, compare, getcount, removevalue, setcomparebutton, setinput, setstorage, setvalues, storevalue;
+
+  var alertitems, checkcompare, compare, getcount, removevalue, setcomparebutton, setinput, setstorage, setvalues, storevalue;
 
   compare = function() {
     if (!checkcompare()) {
@@ -45,15 +45,9 @@
     }
   };
 
-  addinput = function() {
-    var m;
-    m = setinput();
-    return $('body').append(m);
-  };
-
   setstorage = function() {
     if (!$("#hdItemIDs").length) {
-      return addinput();
+      return setinput();
     } else {
       return $("#hdItemIDs");
     }
@@ -61,20 +55,27 @@
 
   setinput = function() {
     var $input;
-    $input = $("<input>");
-    return $input.attr({
-      name: "hdItemIDs",
-      id: "hdItemIDs",
-      type: "hidden"
-    });
+    if ($("#hdItemIDs").length <= 0) {
+      $input = $("<input>");
+      $input.attr({
+        name: "hdItemIDs",
+        id: "hdItemIDs",
+        type: "hidden"
+      });
+      $('body').append($input);
+      return $input;
+    } else {
+      return $("#hdItemIDs");
+    }
   };
 
   storevalue = function(id) {
     var $input, c, content;
-    $input = $("#hdItemIDs");
+    $input = setinput();
     c = $input.val();
     content = c === "" ? id : $input.val() + "," + id;
-    return $input.val(content);
+    $input.val(content);
+    return content;
   };
 
   removevalue = function() {
@@ -103,4 +104,4 @@
 
   setstorage();
 
-}).call(this);
+

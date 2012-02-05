@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Liittelfuse script tests</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+    
+<style media="all" type="text/css">
+body, #qunit-tests, #qunit-header, #qunit-banner, #qunit-testrunner-toolbar, #qunit-userAgent, #qunit-testresult {
+	font-family:  Arial, sans-serif;
+}
+</style>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.6/underscore-min.js"></script>
+
+<script type="text/javascript" src="../script.js"></script>
+
+<script type="text/javascript" src="test.js"></script>
+
+<!--<script src="http://uitesting.bgtpartners.com/js/inject.js" type="text/javascript" charset="utf-8"></script>-->
+
+</head>
+
+<body>
+
+    <h1 id="qunit-header">Liittelfuse script tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">
+    	
+    <form method="get" action="#" name="testform" id="testform">
+        <ul>
+            <li>
+                <input type="checkbox" name="products" id="product1" class="compare-check" />
+                <label for="product1">Product 1</label>
+            </li>
+            <li>
+                <input type="checkbox" name="products" id="product2" class="compare-check" />
+                <label for="product2">Product 2</label>
+            </li>
+            <li>
+                <input type="checkbox" name="products" id="product3" class="compare-check" />
+                <label for="product3">Product 3</label>
+            </li>
+            <li>
+                <input type="checkbox" name="products" id="product4" class="compare-check" />
+                <label for="product4">Product 4</label>
+            </li>
+            <li>
+                <input type="checkbox" name="products" id="product5" class="compare-check" />
+                <label for="product5">Product 5</label>
+            </li>
+            <li>
+                <input type="checkbox" name="products" id="product6" class="compare-check" />
+                <label for="product6">Product 6</label>
+            </li>
+        </ul>
+        
+        <input type="button" name="compare" id="compare" value="Compare" class="compare-button" />
+        
+        <input type="hidden" id="txtCompareList" name="txtCompareList" value="" />
+    </form>
+
+    <a href="#" onclick="storeValue('test'); alert($('#hdItemIDs').val()); return false;">Test storage</a>
+
+</body>
+</html>
+
+
