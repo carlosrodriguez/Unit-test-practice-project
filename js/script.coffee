@@ -6,12 +6,12 @@ setvalues = ->
   removevalue()
   $(".compare-check:checked").each (i, element) => storevalue($(element).attr('id'))
 
-getcount = ->
-  $(".compare-check:checked").length
+getcount = (item) ->
+  if typeof item == "object" then item.length else $(item).length
 
 setcomparebutton = ->
   $button = $(".compare-button")
-  if getcount() <= 1 
+  if getcount($(".compare-check:checked")) <= 1
     $button.attr('disabled', true)
     $button.off('click', compare).addClass('compare-button-disabled')
   else
@@ -19,7 +19,7 @@ setcomparebutton = ->
     $button.on('click', compare).removeClass('compare-button-disabled')
 
 checkcompare = ->
-  if getcount() >= 2 then true else false
+  if getcount($(".compare-check:checked")) >= 2 then true else false
 
 addinput = ->
   m = setinput()
@@ -40,7 +40,7 @@ storevalue = (id) ->
   $input = $("#hdItemIDs")
   c = $input.val()
   content = if c == "" then id else $input.val() + "," + id
-  $input.val(content);
+  $input.val(content)
 
 removevalue = ->
   $("#hdItemIDs").val('')

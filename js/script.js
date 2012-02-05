@@ -17,14 +17,18 @@
     });
   };
 
-  getcount = function() {
-    return $(".compare-check:checked").length;
+  getcount = function(item) {
+    if (typeof item === "object") {
+      return item.length;
+    } else {
+      return $(item).length;
+    }
   };
 
   setcomparebutton = function() {
     var $button;
     $button = $(".compare-button");
-    if (getcount() <= 1) {
+    if (getcount($(".compare-check:checked")) <= 1) {
       $button.attr('disabled', true);
       return $button.off('click', compare).addClass('compare-button-disabled');
     } else {
@@ -34,7 +38,7 @@
   };
 
   checkcompare = function() {
-    if (getcount() >= 2) {
+    if (getcount($(".compare-check:checked")) >= 2) {
       return true;
     } else {
       return false;
