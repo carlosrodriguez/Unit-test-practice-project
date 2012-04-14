@@ -1,6 +1,0 @@
-{
-  "max_line_length" : {
-    "value": 180,
-    "level" : "error"
-  }
-}
