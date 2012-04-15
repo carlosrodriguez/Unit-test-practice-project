@@ -8,19 +8,18 @@ $(document).ready(function(){
 	
 	test("Sanity Check", function() {
 		
-		expect(7); // Set the number of tests
+		expect(6); // Set the number of tests
 
 		search = this.search;
 
 		// Are our methods still functions?
-		equal(typeof(search.init), "function", "init is a function");
+		equal(typeof(search.setService), "function", "setService is a function");
 
 		search = this.search.exposeTest();
 
 		equal(typeof(search.divideString), "function", "divideString is a function");
 		equal(typeof(search.clearSpaces), "function", "clearSpaces is a function");
 		equal(typeof(search.prepareData), "function", "prepareData is a function");
-		equal(typeof(search.setService), "function", "setService is a function");
 		equal(typeof(search.checkNumber), "function", "checkNumber is a function");
 		equal(typeof(search.checkState), "function", "checkState is a function");
 	});	
@@ -35,7 +34,7 @@ $(document).ready(function(){
 
 		expect(7);
 
-		search = this.search.init;
+		search = this.search.setService;
 
 		equal(search("33180"),"testingZip.aspx?zip=33180","We got a zip code for 33180");
 		equal(search("33180 "),"testingZip.aspx?zip=33180","We got a zip code 33180 with trailing space");
