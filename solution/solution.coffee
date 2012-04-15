@@ -62,7 +62,7 @@ doSearch = do (doSearch) ->
 
   divideString = (data, separator) ->
       if data.indexOf(separator) != -1
-          searchTerm = data.split(seperator)
+          searchTerm = data.split(separator)
       else 
           searchTerm = [data];
           
@@ -71,21 +71,22 @@ doSearch = do (doSearch) ->
       
 
   prepareData = (data) ->
-      searchTerm = divideString(data,",")
+      searchTerm = divideString(data," ")
       searchTerm.map (i) ->
-          clearSpace(i);
+          clearSpaces(i);
       
   setService = (data) -> 
       searchTerms = prepareData(data)
       check = _.find(searchTerms, (i) -> checkNumber(i))
       if(check) then "testingZip.aspx?zip="+check
       else
-         check = _.find(searchTerms, (i) -> checkState(i))
-         if(zip) then "testingState.aspx?state="+check
+        check = _.find(searchTerms, (i) -> checkState(i))
+        if(check) then "testingState.aspx?state="+check
+        else "error"
           
 
   checkNumber = (data) ->
-      !isNaN(parseFloat(n)) && isFinite(n);
+      !isNaN(parseFloat(data)) && isFinite(data);
 
   checkState = (data) ->
       if _.indexOf(stateCodes, data.toUpperCase()) != -1
@@ -94,4 +95,15 @@ doSearch = do (doSearch) ->
           true
       else
           false
+
+  doSearch.exposeTest = ->
+    test = {}
+    test.divideString = divideString
+    test.clearSpaces = clearSpaces
+    test.prepareData = prepareData
+    test.setService = setService
+    test.checkNumber = checkNumber
+    test.checkState = checkState
+    test
+
   doSearch
