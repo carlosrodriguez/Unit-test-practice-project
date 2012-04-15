@@ -11,9 +11,8 @@ $(document).ready(function(){
 		expect(7); // Set the number of tests
 
 		search = this.search;
-		console.log(search);
 
-		// Are your functions still functions?
+		// Are our methods still functions?
 		equal(typeof(search.init), "function", "init is a function");
 
 		search = this.search.exposeTest();
@@ -23,7 +22,7 @@ $(document).ready(function(){
 		equal(typeof(search.prepareData), "function", "prepareData is a function");
 		equal(typeof(search.setService), "function", "setService is a function");
 		equal(typeof(search.checkNumber), "function", "checkNumber is a function");
-		equal(typeof(search.divideString), "function", "divideString is a function");
+		equal(typeof(search.checkState), "function", "checkState is a function");
 	});	
 
 	module("Are we getting the right service?", {
