@@ -1,6 +1,6 @@
 #Unit Test practice project.
 
-A simple initial test practice project.
+Unit testing practice project
 
 ##Your mission, if you choose to accept it
 
